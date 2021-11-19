@@ -1,37 +1,103 @@
-## Welcome to GitHub Pages
+# Package "churneval"
 
-You can use the [editor on GitHub](https://github.com/soumide-coursera/churneval/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+#### **Version:** 1.1
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+#### **Author:** *Soumi De*
 
-### Markdown
+#### **Maintained by:** Soumi De <<soumi.de@res.christuniversity.in>>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+#### **Description:** 
+churneval is a package to evaluate models used in churn classification. The evaluation metrics include accuracy, sensitivity, specificity, precision, F1-score and top-decile lift.
 
-```markdown
-Syntax highlighted code block
+#### **License:** GPL-3
 
-# Header 1
-## Header 2
-### Header 3
+#### **Date:** 12th November, 2021
+<br>
 
-- Bulleted
-- List
+___
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
+### **Function:**
+    get_performance_metrics               Function that returns evaluation metrics
 
-[Link](url) and ![Image](src)
-```
+___
+<br>
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+### **Usage:**
 
-### Jekyll Themes
+from churneval import get_performance_metrics
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/soumide-coursera/churneval/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+get_performance_metrics(model_name, true_class, predicted_class, predicted_probs)
 
-### Support or Contact
+### **Arguments:**
+* model_name: 		Abbreviated name of the churn model (in text)
+* true_class: 		A dataframe of true class labels with shape (n,1)
+* predicted_class: 	An array of binary predicted class with shape (n,)
+* predicted_probs:	An array of predicted class probabilities with shape (n,)
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### **Returned Values:**
+
+A dataframe consisting of elements given below:
+* Model_Name: Abbreviated name of the churn model
+* Accuracy:		Accuracy of churn model
+* Confusion Matrix:	A 2X2 array representing confusion matrix
+* Precision:		Precision value
+* Sensitivity:		Sensitivity value
+* Specificity:		Specificity value
+* F1-score:		F1-score
+* ROC_score:		Area under the curve
+* top_dec_lift:		Top decile lift value
+
+<br>
+
+
+___
+
+### **Function:**
+    top_decile_lift               Function that returns top decile lift of a sample
+
+___
+<br>
+
+### **Usage:**
+
+from churneval import top_decile_lift
+
+top_decile_lift(true_class, predicted_class, predicted_probs)
+
+### **Arguments:**
+* true_class: 		A dataframe of true class labels with shape (n,1)
+* predicted_class: 	An array of binary predicted class with shape (n,)
+* predicted_probs:	An array of predicted class probabilities with shape (n,)
+
+### **Returned Values:**
+
+* A float object with top decile lift value
+
+<br>
+
+
+___
+
+### **Function:**
+    lift_curve               Function that plots lift curve of a model
+
+___
+<br>
+
+### **Usage:**
+
+from churneval import lift_curve
+
+lift_curve(true_class, predicted_class, predicted_probs)
+
+### **Arguments:**
+* true_class: 		A dataframe of true class labels with shape (n,1)
+* predicted_class: 	An array of binary predicted class with shape (n,)
+* predicted_probs:	An array of predicted class probabilities with shape (n,)
+
+### **Returned Values:**
+
+* A plot that shows lift curve
+    * x-axis: Proportion of data
+    * y-axis: Lift of the model
