@@ -15,7 +15,7 @@ setuptools.setup(
     author_email='soumi.de@res.christuniversity.in',
     license='LICENSE.txt',
     description='churneval is a python package for evaluating churn models',
-    version='1.1',
+    version='1.3',
     python_requires=">=3.5",
     long_description=long_description,
     long_description_content_type='text/markdown',
