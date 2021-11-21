@@ -1,13 +1,13 @@
 # Package "churneval"
 
-#### **Version:** 1.1
+#### **Version:** 1.3
 
 #### **Author:** *Soumi De*
 
 #### **Maintained by:** Soumi De <<soumi.de@res.christuniversity.in>>
 
 #### **Description:** 
-churneval is a package to evaluate models used in churn classification. The evaluation metrics include accuracy, sensitivity, specificity, precision, F1-score and top-decile lift.
+churneval is a package to evaluate models used in churn classification. The evaluation metrics include accuracy, sensitivity, specificity, precision, F1-score and top decile lift. The package also contains functions to plot lift curve and gain curve of a model.
 
 #### **License:** GPL-3
 
@@ -63,11 +63,10 @@ ___
 
 from churneval import top_decile_lift
 
-top_decile_lift(true_class, predicted_class, predicted_probs)
+top_decile_lift(true_class, predicted_probs)
 
 ### **Arguments:**
 * true_class: 		A dataframe of true class labels with shape (n,1)
-* predicted_class: 	An array of binary predicted class with shape (n,)
 * predicted_probs:	An array of predicted class probabilities with shape (n,)
 
 ### **Returned Values:**
@@ -89,11 +88,10 @@ ___
 
 from churneval import lift_curve
 
-lift_curve(true_class, predicted_class, predicted_probs)
+lift_curve(true_class, predicted_probs)
 
 ### **Arguments:**
 * true_class: 		A dataframe of true class labels with shape (n,1)
-* predicted_class: 	An array of binary predicted class with shape (n,)
 * predicted_probs:	An array of predicted class probabilities with shape (n,)
 
 ### **Returned Values:**
@@ -101,3 +99,31 @@ lift_curve(true_class, predicted_class, predicted_probs)
 * A plot that shows lift curve
     * x-axis: Proportion of data
     * y-axis: Lift of the model
+
+<br>
+
+
+___
+
+### **Function:**
+    gain_curve               Function that plots gain curve of a model
+
+___
+<br>
+
+### **Usage:**
+
+from churneval import gain_curve
+
+gain_curve(true_class, predicted_probs)
+
+### **Arguments:**
+* true_class: 		A dataframe of true class labels with shape (n,1)
+* predicted_probs:	An array of predicted class probabilities with shape (n,)
+
+### **Returned Values:**
+
+* A plot that shows lift curve
+    * x-axis: Proportion of data
+    * y-axis: Gain of the model
+
